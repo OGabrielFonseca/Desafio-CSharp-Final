@@ -1,0 +1,54 @@
+@model Projeto.Models.ViewModel.AtualizarViewModel
+
+@{
+    ViewData["Title"] = "Atualizar Venda";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <main>
+        <div class = "my-form">  
+            <h1>Atualizar Venda</h1> 
+            <hr>
+            <form asp-action="AtualizarVenda", asp-controller = "Venda", method="post">
+                <div class = "form-group">
+                    <label >Id Venda</label>
+                    <input asp-for = "Venda.Id" name = 'id' readonly >
+                    </select>
+                </div>
+
+                <div class = "form-group">
+                    <label >Id do Vendedor</label>
+                    <input asp-for = "Venda.IdVendedor"  readonly>
+                    </select>
+                </div>
+                
+                <div class = "form-group">
+                    <label >Status da Venda</label>
+                    <select class = "my-select" asp-items="Model.StatusSelectedList" name = 'status'>
+                    </select>
+                </div>
+                <div class = "form-group">
+                    <button type="submit" class = "my-button normal" >Atualizar</button>
+                    <button class = "my-button normal" asp-action = "Index">Voltar</button>
+                </div>       
+            </form>
+        </div>
+    </main>
+</body>
+</html>
+
+
+
+
+
+
+

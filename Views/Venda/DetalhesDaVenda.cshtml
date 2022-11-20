@@ -1,0 +1,108 @@
+@model Projeto.Models.ViewModel.DisplayViewModel
+
+@{
+    ViewData["Title"] = "Detalhes da venda";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <main>
+        <div class = "my-form">  
+            <h1>Detalhes da Venda</h1> 
+            <hr>
+                <div>
+                    <div class = "form-group" style="display: inline-block;">
+                        <label >Id Venda</label>
+                        <label class = "input-label">
+                        @Html.DisplayFor(model => model.Venda.Id)</label>                      
+                    </div>
+
+                    <div class = "form-group" style="display: inline-block;">
+                        <label >Data da Venda</label>
+                        <label class = "input-label">
+                        @Html.DisplayFor(model => model.Venda.DataVenda)</label>                      
+                    </div>
+                </div>
+                
+                <div>
+                    <div class = "form-group" style="display: inline-block;">
+                        <label >Id do Vendedor</label>
+                        <label class = "input-label">
+                        @Html.DisplayFor(model => model.Venda.IdVendedor)</label>                      
+                    </div>
+
+                    <div class = "form-group" style="display: inline-block;">
+                        <label >Nome do Vendedor</label>
+                        <label class = "input-label">
+                        @Html.DisplayFor(model => model.Vendedor.Nome)</label>                      
+                    </div>
+                </div>
+                <div>
+                    <div class = "form-group" style="display: inline-block;">
+                        <label >CPF do Vendedor</label>
+                        <label class = "input-label">
+                        @Html.DisplayFor(model => model.Vendedor.CPF)</label>                      
+                    </div>
+
+                    <div class = "form-group" style="display: inline-block;">
+                        <label >Email do Vendedor</label>
+                        <label class = "input-label">
+                        @Html.DisplayFor(model => model.Vendedor.Email)</label>                      
+                    </div>
+                    <div class = "form-group" style="display: inline-block;">
+                        <label >Telefone do Vendedor</label>
+                        <label class = "input-label">
+                        @Html.DisplayFor(model => model.Vendedor.Telefone)</label>                      
+                    </div>
+                </div>
+        
+            <table >
+                <thead>
+                    <tr>
+                        <th>
+                            Id do Produto
+                        </th>
+                        <th>
+                            Nome
+                        </th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    @if(Model.Venda.Produtos != null){
+                        @foreach (var item in Model.Venda.Produtos)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => item.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Nome)
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody> 
+            </table>
+
+            <div class = "form-group">
+                    <a class = "my-button normal" asp-action = "Index">Voltar</a>
+            </div>
+        </div>
+
+
+
+
+
+    </main>
+
+
+
+</body>
+</html>

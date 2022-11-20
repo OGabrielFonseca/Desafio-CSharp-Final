@@ -1,0 +1,58 @@
+@model Projeto.Models.Vendedor
+
+@{
+    ViewData["Title"] = "CadastarVendedor";
+}
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+ <body>
+    
+    <div class = "my-form">
+        <h1>Cadastrar novo vendedor</h1>
+        <hr>
+        <div>
+            <form asp-action="CadastrarVendedor", asp-controller = "Venda", method="post" >
+
+                <div class = "form-group">
+                    <label asp-for="Nome">Nome</label>
+                    <input style = "width: 50%" asp-for = "Nome"  required/>
+                </div>
+
+                <div class = "form-group">
+                    <label asp-for="Telefone" >Email</label>
+                    <input asp-for = "Email" style = "width: 40%" type = "email" required/>
+                </div>
+
+                <div class = "form-group">
+                    <label asp-for="CPF">CPF</label>
+                    <input type = "text" asp-for = "CPF" required/>
+                </div>
+
+                <div class = "form-group">
+                    <label asp-for="Telefone" >Telefone</label>
+                    <input asp-for = "Telefone" required/>
+                </div>
+
+
+                <div class = "form-group">
+                    <button type="submit" class = "my-button normal" >Cadastrar</button>
+                    <a class = "my-button normal" asp-action = "Index">Voltar</a>
+                </div>
+
+            </form>
+            
+        </div>
+
+    </div>
+ </body>
+ </html>
+
+
+
+

@@ -1,0 +1,102 @@
+@model IEnumerable<Projeto.Models.ViewModel.DisplayViewModel>
+
+@{
+    ViewData["Title"] = "Listagem de Vendas";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Vendas</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Vendas</h1>
+            <form id = "new-sale-form">
+                <input type="number" id = "search-sale-input" placeholder="Digite o Id da Venda">
+                <button class = "index-button" >Buscar    </button>
+            </form>  
+            <div class>
+                <a class = "index-button" asp-action= "CadastrarVendedor" style= "margin: 20px">Novo Vendedor</a>
+                <a class = "index-button" asp-action= "CadastrarVenda" style= "margin: 20px">Nova Venda</a>
+            </div>
+    </header>
+
+    <main>
+        <section>
+            <table >
+                <thead>
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Id do Vendedor
+                        </th>
+                        <th>
+                            Nome do Vendedor
+                        </th>
+                        <th>
+                            Data
+                        <th>
+                            Status
+                        </th>
+                        <th colspan="3 ">
+                            Ações
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody> 
+                    @if(Model != null){
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(model => item.Venda.Id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Vendedor.Id)  
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Vendedor.Nome)  
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(model => item.Venda.DataVenda)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(model => item.Venda.Status)
+                                </td>
+
+                                @if(item.Venda.Status != "Entregue" && item.Venda.Status != "Cancelado" )
+                                {
+                                    <td>
+                                        <a class = "index-button" asp-action = "AtualizarVenda" asp-route-id = "@item.Venda.Id">Atualizar Status</a>
+                                    </td> 
+                                    <td>
+                                        <a class = "index-button" asp-action = "DetalhesDaVenda" asp-route-id = "@item.Venda.Id">Detalhes da Venda</a>
+                                    </td>
+                                }
+                                else{
+                                    <td colspan="2">
+                                        <a class = "index-button" asp-action = "DetalhesDaVenda" asp-route-id = "@item.Venda.Id">Detalhes da Venda</a>
+                                    </td>
+                                }
+                                <td>
+                                    <a class = "index-button delete" asp-action = "DetalhesDaVenda" asp-route-id = "@item.Venda.Id">Delete</a>
+                                </td>  
+                            </tr>
+                        }
+                    }
+                </tbody> 
+            </table>
+        </section>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,98 @@
+@model Projeto.Models.ViewModel.CadastrarVendaViewModel
+
+@{
+    ViewData["Title"] = "Cadastrar nova Venda";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+
+
+<div class = "my-form">
+    <h1>Cadastrar nova venda</h1>
+    <hr>
+        
+    <form asp-action="CadastrarVenda", asp-controller = "Venda", method="post">
+        <div >
+            <div class = "form-group" style="display: inline-block;">
+                <label >Vendedor    </label>
+                <select class = "my-select" asp-items="Model.VendedorSelectedList" asp-for="Venda.IdVendedor" required>
+                </select>
+                <a id = "cadastro" class = "my-button normal" asp-action = "CadastrarVendedor">Cadastrar novo Vendedor</a>
+            </div>
+            <div class = "form-group" style="display: inline-block;">
+                <label class = "control-label">Data da Venda</label>
+                <input name = "Venda.DataVenda" type="date" style="width: 100px;" required/>
+            </div>
+        </div>
+        
+        <div class = "form-group">
+            <label class = "form-label">Status da Venda</label>
+            <select class = "my-select" asp-items="Model.StatusSelectedList" asp-for="Venda.Status" required>
+            </select>
+        </div>
+
+        <div class = "form-group cointainer">
+            <div class = "card mt-5">   
+                    <div c>
+                        <h2>
+                        Produtos
+                        </h2>
+                    </div>    
+                    
+                    <div class= "card-body">
+                        <div id = "product-form">
+                            <div class = "row" id = "row1">
+                                <div class = "col-8">
+                                    <input name = "Venda.Produtos[0].Nome" placeholder="Nome do Produto 1" required/>
+                                </div>
+                            </div><br>
+                        </div>
+                        <button type = "button" class= "my-button normal" onclick = "adicionar_campo()">
+                            Adicionar
+                        </button>
+
+                    </div>
+            </div>
+        </div>
+
+        <div class = "form-group confirm">
+            <button type="submit" class = "my-button normal" >Cadastrar</button>
+            <a class = "my-button normal" asp-action = "Index">Voltar</a>
+        </div>
+
+    </form>
+    
+    
+
+</div>
+
+<script>
+    var count = 0;
+    function adicionar_campo()
+    {
+        count+= 1;
+        html = '<div class = "row" id = "row'+count+'">\
+                    <div class = "col-8">\
+                        <input asp-for = "Venda.Produtos" name = "Venda.Produtos['+count+'].Nome" placeholder="Nome do Produto '+(count + 1) +' "/>\
+                    </div>\
+                </div><br>'
+        var form = document.getElementById('product-form')
+        form.innerHTML += html
+    } 
+</script>
+
+</body>
+
+
+
+</html>
+
+
